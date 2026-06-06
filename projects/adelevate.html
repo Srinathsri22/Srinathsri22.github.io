@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adelevate — Srinath Senthilkumar</title>
+  <meta name="description" content="Affiliate campaign automation & operations platform powering GrowthFusion's media buying across 5 ad platforms and 48 ad accounts.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon2.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="atmosphere"></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="../" class="logo">srinath<span>.</span></a>
+    <div class="nav-links">
+      <a href="../#projects">Projects</a>
+      <a href="../#skills">Skills</a>
+      <a href="../#contact" class="btn btn-outline" style="padding:10px 22px">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="proj-hero-section">
+  <div class="container">
+    <a href="../#projects" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      All Projects
+    </a>
+    <span class="section-label">Project 01 &mdash; Flagship</span>
+    <h1>Adelevate</h1>
+    <p class="lead">The operational backbone of GrowthFusion's affiliate media buying operation — campaign automation, reporting, and operations across 5 ad platforms.</p>
+
+    <div class="proj-metrics-bar reveal">
+      <div class="proj-metric"><div class="value">10+</div><div class="label">hrs/wk saved per buyer</div></div>
+      <div class="proj-metric"><div class="value">4</div><div class="label">tools replaced</div></div>
+      <div class="proj-metric"><div class="value">$1K+</div><div class="label">/mo infra cost cut</div></div>
+      <div class="proj-metric"><div class="value">150+</div><div class="label">active rules 24/7</div></div>
+      <div class="proj-metric"><div class="value">0</div><div class="label">automation escalations</div></div>
+      <div class="proj-metric"><div class="value">12</div><div class="label">report pages</div></div>
+      <div class="proj-metric"><div class="value">48</div><div class="label">ad accounts managed</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-body">
+  <div class="container">
+    <div class="proj-layout">
+      <div>
+        <div class="content-block reveal">
+          <span class="section-label">The Problem</span>
+          <h2>Manual ops across 4+ ad platforms</h2>
+          <p>Media buyers were managing campaigns across Meta Ads Manager, Snapchat Ads Manager, TikTok Business Center, and Google Ads — plus RedTrack for attribution. They spent hours switching between dashboards, manually monitoring performance, and making repetitive bid/budget changes.</p>
+          <p>There was no automation, no unified view, and no programmatic loss control. When something broke at 2am, nobody caught it until morning.</p>
+        </div>
+
+        <div class="content-block reveal">
+          <span class="section-label">What I Built</span>
+          <h2>Rules Engine</h2>
+          <p>A rule-based automation system that manages campaigns across Meta, Snapchat, TikTok, and Google without manual intervention. Supports 5 operation types: pause, activate, budget change, bid adjustment, and dayparting.</p>
+          <p>Rules operate at campaign, ad set, and ad levels across all platforms simultaneously. The engine continuously evaluates real-time metrics from connected ad platforms and executes spend decisions 24/7.</p>
+          <ul class="features">
+            <li>Grew from zero adoption to <strong>150+ active rules</strong> within one quarter</li>
+            <li>Manager escalations related to automation failures <strong>dropped to zero</strong> after an architectural fix resolving a critical API rate-limit issue</li>
+          </ul>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>Campaign Operations Dashboard</h2>
+          <p>Unified campaign management consolidating 5 platforms and 48 ad accounts (32 Meta + 16 Snapchat) into a single interface.</p>
+          <ul class="features">
+            <li><strong>Inline budget controls</strong> — increase/decrease by % or fixed amount, daily/lifetime</li>
+            <li><strong>Bid strategy switching</strong> — 4 Meta strategies, 3 Snap strategies</li>
+            <li><strong>Pause/resume</strong> at campaign, ad set, and ad levels</li>
+            <li><strong>Sort by 20 performance metrics</strong></li>
+            <li><strong>Filter</strong> by any of 48 ad accounts, media buyer tag, status, and platform</li>
+            <li><strong>Bulk operations</strong> — select multiple campaigns, apply changes in one action</li>
+            <li><strong>Server-side pagination</strong> — 25 campaigns/50 ads per page, ~5 second load</li>
+          </ul>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>Reporting Layer</h2>
+          <p>12 specialized report pages covering every performance dimension.</p>
+          <div class="component-grid">
+            <div class="component-item"><div class="ci-number">Analytics</div><h4>Overview &amp; Campaign</h4><p>Top-level rollups and campaign-level breakdowns</p></div>
+            <div class="component-item"><div class="ci-number">Granular</div><h4>Ad Set &amp; Ad Level</h4><p>Deep-dive into every ad set and individual ad creative</p></div>
+            <div class="component-item"><div class="ci-number">Attribution</div><h4>Offer, Lander &amp; Channel</h4><p>Offer source, landing page, and traffic channel analysis</p></div>
+            <div class="component-item"><div class="ci-number">Geo</div><h4>US 50-State Heatmap</h4><p>Regional performance across all 50 states</p></div>
+          </div>
+          <p>All reports surface 17 metrics (spend, revenue, profit, ROI, clicks, impressions, CTR, CPC, CPM, CPA, conversions, CVR, AOV, LP views, LP clicks, LP CTR, purchases) across 15+ verticals.</p>
+          <div class="callout-box">
+            <div class="cb-label">Infrastructure</div>
+            <p>ClickHouse Materialized Views pre-aggregate metrics at every level for sub-second query response. Self-hosted Airbyte ETL on in-house infrastructure, replacing a paid cloud service and saving $1,000+/month.</p>
+          </div>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>RBAC &amp; Access Control</h2>
+          <p>3-tier permission model (User / Admin / SuperAdmin) with per-user platform restrictions stored in Supabase. Self-serve ad account provisioning and rules access control without engineering involvement.</p>
+          <ul class="features">
+            <li><strong>48 ad accounts</strong> under self-serve RBAC</li>
+            <li>Firestore real-time listeners on rules for <strong>instant change propagation</strong></li>
+          </ul>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>Frontend Performance</h2>
+          <p>4-tier TanStack Query cache strategy optimized for each data type:</p>
+          <div class="component-grid">
+            <div class="component-item"><div class="ci-number">HOT</div><h4>30s stale / 5m GC</h4><p>Live metrics — real-time campaign performance</p></div>
+            <div class="component-item"><div class="ci-number">STANDARD</div><h4>2m stale / 15m GC</h4><p>Campaign lists and reports</p></div>
+            <div class="component-item"><div class="ci-number">CATALOG</div><h4>10m stale / 60m GC</h4><p>Ad accounts and platform data</p></div>
+            <div class="component-item"><div class="ci-number">STATIC</div><h4>30m stale / 2h GC</h4><p>Roles and configuration</p></div>
+          </div>
+          <ul class="features">
+            <li><strong>500ms debounce</strong> on all search/date inputs</li>
+            <li><strong>AbortController</strong> request cancellation on 100% of API calls</li>
+            <li><strong>7+ useMemo / 4+ useCallback</strong> optimizations in the campaigns table</li>
+          </ul>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>Meta API Rate-Limit Fix</h2>
+          <p>Identified the root cause of API rate-limit failures that were blocking the entire ED vertical from scaling. Redesigned the Meta data ingestion architecture with intelligent batching and throttling.</p>
+          <ul class="features">
+            <li><strong>80% reduction</strong> in API calls to Meta</li>
+            <li>Unblocked the media buying team and <strong>eliminated missed optimization windows</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="proj-sidebar">
+        <div class="sidebar-card">
+          <h4>Tech Stack</h4>
+          <div class="sidebar-stack">
+            <span>Java</span><span>Spring Boot</span><span>Kafka</span><span>ClickHouse</span><span>Elasticsearch</span><span>Firestore</span><span>Supabase</span><span>TanStack Query</span><span>Meta API</span><span>Snapchat API</span><span>TikTok API</span><span>Newsbreak API</span><span>Google Ads API</span><span>Airbyte</span><span>Windsor.ai</span><span>GCP</span>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Key Results</h4>
+          <ul class="sidebar-results">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>10+ hours/week saved per media buyer</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>4 external tools replaced by 1 platform</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>$1,000+/month infrastructure cost eliminated</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>150+ active automation rules running 24/7</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Automation escalations dropped to zero</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>12 report pages covering every dimension</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>48 ad accounts managed from one interface</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <div class="proj-nav reveal">
+      <div></div>
+      <a href="acte.html" class="next"><span class="pn-label">Next Project</span><span class="pn-title">ACTE &rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container footer-inner"><a href="../" class="logo">srinath<span>.</span></a><span class="muted">Bengaluru, India</span></div></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

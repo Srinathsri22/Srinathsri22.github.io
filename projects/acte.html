@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ACTE — Srinath Senthilkumar</title>
+  <meta name="description" content="Automated Creative Testing Engine — end-to-end automated creative testing from asset upload to winner/loser verdicts.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon2.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="atmosphere"></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="../" class="logo">srinath<span>.</span></a>
+    <div class="nav-links">
+      <a href="../#projects">Projects</a>
+      <a href="../#skills">Skills</a>
+      <a href="../#contact" class="btn btn-outline" style="padding:10px 22px">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="proj-hero-section">
+  <div class="container">
+    <a href="../#projects" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      All Projects
+    </a>
+    <span class="section-label">Project 02</span>
+    <h1>ACTE</h1>
+    <p class="lead">Automated Creative Testing Engine — end-to-end automated creative testing from asset upload to winner/loser verdicts.</p>
+
+    <div class="proj-metrics-bar reveal">
+      <div class="proj-metric"><div class="value">Days&rarr;Hrs</div><div class="label">Creative-to-insight time</div></div>
+      <div class="proj-metric"><div class="value">8wk</div><div class="label">MVP timeline</div></div>
+      <div class="proj-metric"><div class="value">7</div><div class="label">Core components</div></div>
+      <div class="proj-metric"><div class="value">Per-vertical</div><div class="label">Configurable thresholds</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-body">
+  <div class="container">
+    <div class="proj-layout">
+      <div>
+
+        <div class="content-block reveal">
+          <span class="section-label">The Problem</span>
+          <h2>No accountability between creative and media buying</h2>
+          <p>The creative team delivers ad creatives to media buyers, but there was no reliable system to track: how many were actually tested, which ones won or lost, and whether fatigued creatives had been rotated.</p>
+          <p>This created a complete accountability gap between the creative and media buying teams. Creative-to-insight time was measured in days, and the feedback loop was entirely manual.</p>
+        </div>
+
+        <div class="content-block reveal">
+          <span class="section-label">What I Built</span>
+          <h2>Architecture (HLD v2)</h2>
+          <p>GCP-native stack designed as a new module inside Adelevate:</p>
+          <ul class="features">
+            <li><strong>Firestore</strong> for transactional state (write-heavy workflows, not suited for OLAP systems)</li>
+            <li><strong>Google Cloud Storage (GCS)</strong> for creative asset storage</li>
+            <li><strong>ClickHouse extension</strong> for metrics (additive to existing tables, not modifying them)</li>
+            <li>Dashboard-only feedback in MVP — <strong>no direct campaign modifications</strong></li>
+            <li><strong>Zero write access to scaling campaigns</strong> (hard boundary)</li>
+          </ul>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>7 Core Components</h2>
+          <div class="component-grid">
+            <div class="component-item"><div class="ci-number">01</div><h4>Drop Box</h4><p>Asset intake UI where creative team uploads assets per vertical</p></div>
+            <div class="component-item"><div class="ci-number">02</div><h4>Dashboard</h4><p>Pipeline state visualization, verdict display, concept-level rollups</p></div>
+            <div class="component-item"><div class="ci-number">03</div><h4>Test Orchestrator</h4><p>Automated Meta test campaign creation via Marketing API</p></div>
+            <div class="component-item"><div class="ci-number">04</div><h4>Testing Engine</h4><p>Continuous performance monitoring (CTR, CVR, CPA, ROAS)</p></div>
+            <div class="component-item"><div class="ci-number">05</div><h4>Winner/Loser Algorithm</h4><p>Spend-gated verdicts using composite signals against creative-level baselines</p></div>
+            <div class="component-item"><div class="ci-number">06</div><h4>Reiteration Loop</h4><p>Winners surface to creative team for variant development</p></div>
+            <div class="component-item"><div class="ci-number">07</div><h4>Fatigue Finder</h4><p>Composite fatigue signals: frequency, CTR decay, CPA inflation, impression ratio, thumbstop decay</p></div>
+          </div>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>Scope Boundary Enforcement</h2>
+          <p>Hard separation between test campaigns and scaling campaigns enforced via campaign-name prefix regex (<code>ACTE_TEST_&lt;vertical&gt;_...</code>) at the connector layer. This is enforced at the code level, not by convention or trust.</p>
+          <div class="callout-box">
+            <div class="cb-label">Design Decision</div>
+            <p>Adelevate's existing rules engine ignores ACTE-prefixed campaigns automatically. The boundary is architectural, not procedural.</p>
+          </div>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>Phased Build Plan</h2>
+          <ul class="features">
+            <li><strong>Phase 1 (Weeks 1–6):</strong> Read-only. Intake UI, dashboard, verdict computation on existing ads. Validates logic before automation.</li>
+            <li><strong>Phase 2 (Weeks 7–10):</strong> Meta automation. Test Orchestrator, auto-pause losers, auto-graduate winners.</li>
+            <li><strong>Phase 3 (Weeks 11–14):</strong> Multi-platform (Snap, TikTok). Fatigue detection. Full lifecycle.</li>
+          </ul>
+          <div class="callout-box">
+            <div class="cb-label">Key Design Decision</div>
+            <p>LLD deliberately deferred until the dev team reviews the Adelevate codebase. Rationale: specs built without engineers reviewing the actual codebase don't get trusted or followed.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="proj-sidebar">
+        <div class="sidebar-card">
+          <h4>Tech Stack</h4>
+          <div class="sidebar-stack">
+            <span>Java</span><span>Spring Boot</span><span>Kafka</span><span>ClickHouse</span><span>Firestore</span><span>GCS</span><span>Meta Marketing API</span><span>GCP</span>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Key Results</h4>
+          <ul class="sidebar-results">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Creative-to-insight time: days to hours</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>8-week MVP timeline (Meta-only)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>7 core system components designed</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Per-vertical configurable thresholds</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <div class="proj-nav reveal">
+      <a href="adelevate.html"><span class="pn-label">Previous</span><span class="pn-title">&larr; Adelevate</span></a>
+      <a href="oando-properties.html" class="next"><span class="pn-label">Next Project</span><span class="pn-title">O&amp;O Properties &rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container footer-inner"><a href="../" class="logo">srinath<span>.</span></a><span class="muted">Bengaluru, India</span></div></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

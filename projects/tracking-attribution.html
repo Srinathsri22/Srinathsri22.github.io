@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tracking &amp; Attribution — Srinath Senthilkumar</title>
+  <meta name="description" content="Custom tracking stack with 9+ EQS on Meta and a proprietary Snapchat CAPI gateway. $1M+ pixel diagnosed.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../images/favicon2.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="atmosphere"></div>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="../" class="logo">srinath<span>.</span></a>
+    <div class="nav-links">
+      <a href="../#projects">Projects</a>
+      <a href="../#skills">Skills</a>
+      <a href="../#contact" class="btn btn-outline" style="padding:10px 22px">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="proj-hero-section">
+  <div class="container">
+    <a href="../#projects" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      All Projects
+    </a>
+    <span class="section-label">Project 04</span>
+    <h1>Full-Funnel Affiliate Tracking &amp; Attribution Infrastructure</h1>
+    <p class="lead">Custom tracking stack with 9+ Event Quality Score on Meta and a proprietary Snapchat CAPI gateway.</p>
+
+    <div class="proj-metrics-bar reveal">
+      <div class="proj-metric"><div class="value">9+</div><div class="label">EQS on Meta</div></div>
+      <div class="proj-metric"><div class="value">$1M+</div><div class="label">Pixel diagnosed</div></div>
+      <div class="proj-metric"><div class="value">1</div><div class="label">Proprietary CAPI gateway</div></div>
+      <div class="proj-metric"><div class="value">0</div><div class="label">Postback failures</div></div>
+      <div class="proj-metric"><div class="value">6</div><div class="label">Buyers onboarded E2E</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="proj-body">
+  <div class="container">
+    <div class="proj-layout">
+      <div>
+
+        <div class="content-block reveal">
+          <span class="section-label">The Problem</span>
+          <h2>Declining pixel quality on a $1M+ spend pixel</h2>
+          <p>Snapchat campaign performance was declining due to a Poor Event Quality Score (EQS) on a pixel with $1M+ in spend history. Snapchat attributed it to low scCid append rate, but the actual root cause was different.</p>
+          <p>On Meta, iOS tracking restrictions and browser-side signal degradation were eroding attribution accuracy. Call campaigns had attribution gaps from postback timing.</p>
+        </div>
+
+        <div class="content-block reveal">
+          <span class="section-label">What I Built</span>
+          <h2>Snapchat CAPI Gateway — Root Cause Diagnosis</h2>
+          <p>Through analysis of raw CAPI payloads from Snapchat's event logs (Elasticsearch), I identified the real root cause:</p>
+          <ul class="features">
+            <li>RedTrack was correctly capturing and transmitting scCid</li>
+            <li>But the <strong>em (hashed email) and ph (hashed phone) fields were consistently empty</strong> in every payload</li>
+            <li>This missing first-party data was the <strong>actual EQS driver</strong>, not scCid</li>
+            <li>Additional issues: empty event_source_url, event_time in milliseconds instead of Unix seconds, potential event_id reuse</li>
+          </ul>
+          <div class="callout-box">
+            <div class="cb-label">Key Insight</div>
+            <p>The root cause was found in raw payload analysis — not where Snapchat pointed. Their support team attributed the issue to scCid append rate, but the data showed scCid was fine. Missing PII fields were the actual problem.</p>
+          </div>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>Custom CAPI Gateway Architecture</h2>
+          <p>Designed a multi-vertical, multi-pixel CAPI gateway to bypass RedTrack's PII forwarding limitation:</p>
+          <ul class="features">
+            <li><strong>Receive Everflow postbacks</strong> carrying scCid as a sub-parameter passed through RedTrack</li>
+            <li><strong>Enrich with SHA-256 hashed email and phone</strong> from the client</li>
+            <li><strong>Fire corrected CAPI payloads</strong> directly to Snapchat</li>
+            <li><strong>Full event dashboard</strong> for monitoring fired postbacks and event quality</li>
+          </ul>
+          <p>New clean pixel (MEDVI_CAPI_V2) planned for new campaigns. Existing campaigns left untouched. Customer List seeding via hashed PII also planned for Lookalike audience building.</p>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>Meta Server-Side CAPI</h2>
+          <p>Implemented on all O&amp;O properties, bypassing iOS tracking restrictions and browser-side signal degradation entirely.</p>
+          <ul class="features">
+            <li><strong>9+ Event Quality Score</strong> maintained across all active verticals</li>
+            <li>Custom postback and Meta CAPI integration on RemodelWell sending first-party conversion data and revenue signals directly to Meta</li>
+          </ul>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>Call Campaign Attribution</h2>
+          <p>Configured granular 2-minute and 5-minute postback intervals in Ringba for faster and more accurate lead attribution on call-based campaigns. Resolved postback tracking issues and eliminated revenue leakage from misattributed conversions.</p>
+        </div>
+
+        <div class="content-block reveal">
+          <h2>Buyer Onboarding &amp; Operational Standard</h2>
+          <ul class="features">
+            <li><strong>6 live buyers</strong> onboarded with end-to-end lead routing, postback verification, and ZIP code coverage mapping</li>
+            <li>All buyer-reported rejection issues resolved through structured analysis and coordinated fixes</li>
+            <li>Proactive postback verification established as a team standard: sending and verifying postback links with clients <strong>before every new offer delivery</strong></li>
+            <li><strong>Zero postback failures</strong> recorded since adoption</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <aside class="proj-sidebar">
+        <div class="sidebar-card">
+          <h4>Tech Stack</h4>
+          <div class="sidebar-stack">
+            <span>Meta CAPI</span><span>Snapchat CAPI</span><span>Ringba</span><span>RedTrack</span><span>Everflow</span><span>Clickflare</span><span>GTM</span><span>Custom Postback APIs</span><span>Node.js</span><span>GCP</span>
+          </div>
+        </div>
+        <div class="sidebar-card">
+          <h4>Key Results</h4>
+          <ul class="sidebar-results">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>9+ EQS on Meta across all properties</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>$1M+ pixel diagnosed and fix designed</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Root cause found in raw payload analysis</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Proprietary Snap CAPI gateway — no off-the-shelf equivalent</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Zero postback failures since standard</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>6 buyers onboarded end-to-end</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <div class="proj-nav reveal">
+      <a href="oando-properties.html">
+        <span class="pn-label">Previous</span>
+        <span class="pn-title">&larr; O&amp;O Properties</span>
+      </a>
+      <a href="ai-mcp.html" class="next">
+        <span class="pn-label">Next Project</span>
+        <span class="pn-title">AI &middot; MCP Servers &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container footer-inner"><a href="../" class="logo">srinath<span>.</span></a><span class="muted">Bengaluru, India</span></div></footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
